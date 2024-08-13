@@ -23,9 +23,6 @@ public class User {
     private String email;
     @Column(name = "Password")
     private String password;
-
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "fk_role")
-    private Role role;
+    private String roleName;
 
 }

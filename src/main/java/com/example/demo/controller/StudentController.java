@@ -20,8 +20,9 @@ public class StudentController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseDto>createUsers(@RequestBody UserDto userDto,@RequestParam String role){
-        iStudentService.createUser(userDto,role);
+    public ResponseEntity<ResponseDto>createUsers(@RequestBody UserDto userDto){
+        iStudentService.createUser(userDto
+        );
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new ResponseDto("Successfully created",HttpStatus.CREATED));
     }
@@ -35,10 +36,10 @@ public class StudentController {
     }
 
     @GetMapping("/role/{role}")
-    public ResponseEntity<List<UserDto>>fetchRole(@PathVariable String role){
-        List<UserDto> users = iStudentService.fetchDetailsByRole(role);
-        return ResponseEntity.ok(users);
-
+    public ResponseEntity<List<UserDto>>fetchRole(@PathVariable("role") String roleName){
+        List<UserDto> users = iStudentService.fetchDetailsByRole(roleName);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(users);
     }
 
 
